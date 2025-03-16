@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "./";
+
+service ContractService {
+  rpc ReadData (ReadRequest) returns (UserResponse);
+  rpc SendFine (FineRequest) returns (ResultResponse);
+  rpc BalanceOf (BalanceRequest) returns (BalanceResponse);
+  rpc Mint (MintRequest) returns (ResultResponse);
+  rpc Transfer (TransferRequst) returns (ResultResponse);
+}
+
+message ReadRequest {
+  string car = 1;
+  string status = 2;
+}
+
+message UserResponse {
+  string userData = 1;
+}
+
+message FineRequest {
+  string car = 1;
+  int32 price = 2;
+  string reason = 3;
+  string date = 4;
+  string status = 5;
+}
+
+message ResultResponse {
+  bool result = 1;
+}
+
+message BalanceRequest {
+  string id = 1;
+  string status = 2;
+}
+
+message BalanceResponse {
+  int32 balance = 1;
+}
+
+message MintRequest {
+  string minter = 1;
+  string amount = 2;
+  string status = 3;
+}
+
+message TransferRequst {
+  int64 idFine = 1;
+  string from = 2;
+  string status = 3;
+}
