@@ -56,4 +56,4 @@ and
 ```bash
 ./network.sh deployCC -ccn MyChaincode -ccl javascript -ccp ../contract/chaincode -c blockchain -cci InitLedger
 ```
-- If you change the *proto* file, then it is very tedious to duplicate this proto file in the ***fabric-samples/contract/application*** folder
+- If you change the *proto* file, then you need to copy this proto file to the ***fabric-samples/contract/application*** folder.
