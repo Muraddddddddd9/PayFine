@@ -6,7 +6,7 @@ PayFine is a project that allows users to view and pay fines through HyperLedger
 
 - **HyperLedger**: Private Blockchain.
 - **PostgreSQL**: Database for storing user data.
-- **Vite+ReactJS**: User Interface.
+- **Vite+ReactJS+ChakraUI**: User Interface.
 - **Golang + Fiber**: Writing APIs for interacting with PostgreSQL and gRPC with JavaScript backend
 - **JavaScript**: Writing functions to interact directly with HyperLedger
 - **Docker + WSL + Ubuntu**: Raising a custom channel and network
