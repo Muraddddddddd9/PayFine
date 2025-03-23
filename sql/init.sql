@@ -1,3 +1,19 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id bigserial NOT NULL,
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    surname character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    patronymic character varying(255) COLLATE pg_catalog."default",
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    number_car character varying(255) COLLATE pg_catalog."default" DEFAULT 'none'::character varying,
+    number_fines integer DEFAULT 0,
+    spent_fines integer DEFAULT 0,
+    status character varying(255) COLLATE pg_catalog."default" NOT NULL DEFAULT 'driver'::character varying,
+    CONSTRAINT users_pkey PRIMARY KEY (id),
+    CONSTRAINT users_email_key UNIQUE (email)
+);
+
 CREATE TABLE IF NOT EXISTS cars
 (
     "number" character varying(255) COLLATE pg_catalog."default" NOT NULL,
@@ -16,18 +32,13 @@ CREATE TABLE IF NOT EXISTS email_confirmation
     CONSTRAINT email_confirmation_pkey PRIMARY KEY (email)
 );
 
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE IF NOT EXISTS fines
 (
-    id bigserial NOT NULL,
-    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    surname character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    patronymic character varying(255) COLLATE pg_catalog."default",
-    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    number_car character varying(255) COLLATE pg_catalog."default" DEFAULT 'none'::character varying,
-    number_fines integer DEFAULT 0,
-    spent_fines integer DEFAULT 0,
-    status character varying(255) COLLATE pg_catalog."default" NOT NULL DEFAULT 'driver'::character varying,
-    CONSTRAINT users_pkey PRIMARY KEY (id),
-    CONSTRAINT users_email_key UNIQUE (email)
+    id_fine bigint NOT NULL,
+    car character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    price bigint NOT NULL,
+    reason character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    date bigint NOT NULL,
+    date_pay bigint NOT NULL,
+    CONSTRAINT fines_pkey PRIMARY KEY (id_fine)
 );

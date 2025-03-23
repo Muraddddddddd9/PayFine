@@ -61,7 +61,7 @@ server.addService(serviceProto.ContractService.service, {
                 dbParse = JSON.parse(db)
             }
 
-            if (dbParse.allPenalty.length > 0) {
+            if (dbParse.allPenalty.length !== undefined) {
                 carFine = dbParse.allPenalty.filter(penalty => penalty.car === car);
             }
 
@@ -92,11 +92,13 @@ server.addService(serviceProto.ContractService.service, {
             const org = status === "bank" ? "org2" : "org1"
 
             var db = await ReadData(org, status, "db")
+            console.log("db: ", db)
             try {
                 db = JSON.parse(JSON.parse(db))
             } catch {
                 db = JSON.parse(db)
             }
+            console.log("dbPars: ", db)
 
             var newFine = {
                 id: Math.round(Math.random() * Date.now()),
@@ -177,18 +179,23 @@ server.addService(serviceProto.ContractService.service, {
 
             var db = await ReadData("org1", status, "db")
 
+            console.log("db: ", db)
+
             try {
                 db = JSON.parse(JSON.parse(db))
             } catch {
                 db = JSON.parse(db)
             }
 
+            console.log("dbPars: ", db)
+
+
             carFine = db.allPenalty.filter(penalty => penalty.id === Number(idFine))[0];
-
             const result = await TransferToken("org1", status, from, "bank", String(carFine.price))
+            console.log("dbPars: ", carFine)
 
-            db.allPenalty.pop(carFine)
-
+            db.allPenalty = db.allPenalty.filter(penalty => penalty.id !== Number(idFine));
+            console.log("db: ", db)
             var resultWrite = await WriteData("org1", status, "db", JSON.stringify(db))
 
             var resultResponse = {

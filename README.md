@@ -30,14 +30,15 @@ PayFine is a project that allows users to view and pay fines through HyperLedger
    ```bash
    git clone https://github.com/Muraddddddddd9/payfine.git
    ```
-2. Go to the ***server\config\config*** section.go and replace with your own data:
+2. Go to the ***server\config\config.go*** and replace with your own data:
 3. Opent docker
 4. From the ***sql*** folder, you need to take SQL-scripts for creating a database 
-5. Enter the start command
+5. Go to the ***cmd/Windows*** and enter the start command
    ```bash
    ./start.bat
    ```
-   or
+   OR 
+   Go to the ***cmd/Linux*** and enter the start command
    ```bash
    ./start.sh
    ```

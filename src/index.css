@@ -6,7 +6,29 @@
   --color-backgroundFirst: #09090B;
   --color-backgroundSecond: #111111;
 
+  --color-border-content: #1e1e1e; 
+
   --button-background: teal;
+  --color-text-button: white;
+
+  --input-focus-border: teal;
+}
+
+
+.light-theme {
+  --color-textMain: rgba(0, 0, 0, 0.87);
+  --color-textDescription: rgba(0, 0, 0, 0.6);
+  --color-textLink: #3f9b8d;
+
+  --color-backgroundFirst: #FFFFFF;
+  --color-backgroundSecond: #F5F5F5;
+
+  --color-border-content: #d1d0d0; 
+
+  --button-background: teal;
+  --color-text-button: white;
+
+  --input-focus-border: teal;
 }
 
 body {
@@ -14,7 +36,6 @@ body {
   padding: 0;
   display: flex;
   width: 100%;
-
   color: var(--color-textMain);
   background-color: var(--color-backgroundFirst);
 }

@@ -70,6 +70,8 @@ const VisibilityTrigger = React.forwardRef(
         aspectRatio='square'
         size='sm'
         variant='ghost'
+        backgroundColor="var(--button-background)"
+        color="var(--color-text-button)"
         height='calc(100% - {spacing.2})'
         aria-label='Toggle password visibility'
         {...props}
