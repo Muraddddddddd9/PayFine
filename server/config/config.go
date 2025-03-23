@@ -26,16 +26,16 @@ type Config struct {
 
 func LoadConfig() *Config {
 	return &Config{
-		DBHost:     getEnv("DB_HOST", "localhost"),
-		DBPort:     getEnvAsInt("DB_PORT", 5432),
-		DBUser:     getEnv("DB_USER", "postgres"),
-		DBPassword: getEnv("DB_PASSWORD", "123"),
-		DBName:     getEnv("DB_NAME", "postgres"),
+		DBHost:     getEnv("DB_HOST", ""),
+		DBPort:     getEnvAsInt("DB_PORT", ),
+		DBUser:     getEnv("DB_USER", ""),
+		DBPassword: getEnv("DB_PASSWORD", ""),
+		DBName:     getEnv("DB_NAME", ""),
 		DBSsl:      getEnv("DB_SSL", "disable"),
-		DBPath:     getEnv("DB_PATH", "bank-project"),
+		DBPath:     getEnv("DB_PATH", ""),
 
-		MAILFrom:        getEnv("MAIL_FROM", "abdullaevmurad2221@gmail.com"),
-		MAILPasswordApp: getEnv("MAIL_PASSWORDAPP", "folo ewdj vkus camz"),
+		MAILFrom:        getEnv("MAIL_FROM", ""),
+		MAILPasswordApp: getEnv("MAIL_PASSWORDAPP", ""),
 		MAILSmtpHost:    getEnv("MAIL_HOST", "smtp.gmail.com"),
 		MAILSmtpPort:    getEnvAsInt("MAIL_PORT", 587),
 
