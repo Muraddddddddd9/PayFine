@@ -39,6 +39,33 @@ const useCreateCar = () => {
             return false;
         }
 
+        if ((newCar.number).length !== 6) {
+            toast.error("The number length most be six!")
+            return
+        }
+
+        const checkChar = /^[ABEKMHOPCTYX]+$/
+        const checkNum = /^[0-9]+$/
+        for (let i = 0; i < (newCar.number).length; i++) {
+            if (i === 0 || i === 4 || i === 5) {
+                if (!checkChar.test(newCar.number[i])) {
+                    toast.error("Invalid input number car")
+                    return
+                }
+            } else {
+                if (!checkNum.test(newCar.number[i])) {
+                    toast.error("Invalid input number car")
+                    return
+                }
+            }
+        }
+
+        const checkCategory = /^(A|B|C|D|BE|CE|DE|TM|TB|M|A1|B1)$/;
+        if (!checkCategory.test(newCar.category)) {
+            toast.error("Invalud input category")
+            return
+        }
+        
         if (newCar.validity_period < 0 || newCar.service_life < 0) {
             toast.error(`Invalid input date`);
             return false
@@ -57,7 +84,6 @@ const useCreateCar = () => {
             toast.warn("Invalid input date");
             return false
         }
-
 
         const session_key = localStorage.getItem("session_key")
         try {
