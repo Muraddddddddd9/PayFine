@@ -38,6 +38,14 @@ const useRedactCar = () => {
             console.log(labelData, newData, checkRes)
         }
 
+        if (labelData === "category") {
+            const checkCategory = /^(A|B|C|D|BE|CE|DE|TM|TB|M|A1|B1)$/;
+            if (!checkCategory.test(newData)) {
+                toast.error("Invalud input category")
+                return
+            }
+        }
+
         const session_key = localStorage.getItem("session_key")
         try {
             const response = await fetch(`${URL_API}/redactCar/${session_key}`, {
