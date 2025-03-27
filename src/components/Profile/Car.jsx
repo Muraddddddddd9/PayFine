@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Editable, Button, IconButton } from "@chakra-ui/react";
+import { Box, Center, Flex, Editable, Button, IconButton, createListCollection } from "@chakra-ui/react";
 import {
     DrawerActionTrigger, DrawerBackdrop, DrawerBody, DrawerCloseTrigger,
     DrawerContent, DrawerFooter, DrawerHeader, DrawerRoot, DrawerTitle, DrawerTrigger
@@ -9,6 +9,22 @@ import { useCreateCar, useDeleteCar, useRedactCar } from "@/hooks/allHoks";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LuCheck, LuPencilLine } from "react-icons/lu";
+
+function InfoState(labelJSON) {
+    if (labelJSON === "validity_period" || labelJSON === "service_life") {
+        return "This period should not exceed 10 years."
+    }
+
+    if (labelJSON === "number") {
+        return "Example A000AA"
+    }
+
+    if (labelJSON === "category") {
+        return "All category A, B, C, D, BE, CE, DE, TM, TB, M, A1, B1"
+    }
+
+    return null
+}
 
 const BodyHasCar = ({ carData, handelRedactCar }) => {
     const [labelData, setLabelData] = useState("")
@@ -33,7 +49,7 @@ const BodyHasCar = ({ carData, handelRedactCar }) => {
     return (
         dataCarUser?.map((item) => (
             <DataListItem label={item.label} key={item.id}
-                info={item.labelJSON === "validity_period" || item.labelJSON === "service_life" ? "This period should not exceed 10 years." : null}
+                info={InfoState(item.labelJSON)}
             >
                 <Editable.Root disabled={item.disabled} defaultValue={item.value} borderRadius={"5px"} textAlign="start">
                     <Editable.Preview width={"100px"} />
@@ -85,7 +101,7 @@ const BodyNoneCar = ({ setNewCar }) => {
     return (
         noneCar.map((item) => (
             <DataListItem label={item.label} key={item.id}
-                info={item.labelJSON === "validity_period" || item.labelJSON === "service_life" ? "This period should not exceed 10 years." : null}
+                info={InfoState(item.labelJSON)}
             >
                 <Editable.Root
                     border={"1px solid var(--color-border-content)"}
